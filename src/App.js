@@ -15,7 +15,7 @@ function App() {
     const [theme, colorMode] = useMode();
 
     return (
-        <LoadingProvider>
+        // <LoadingProvider>
             <LangProvider>
                 <AuthProvider>
                     <ColorModeContext.Provider value={colorMode}>
@@ -26,7 +26,7 @@ function App() {
                     </ColorModeContext.Provider>
                 </AuthProvider>
             </LangProvider>
-        </LoadingProvider>
+        // </LoadingProvider>
     );
 }
 

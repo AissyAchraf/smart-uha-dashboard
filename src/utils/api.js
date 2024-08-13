@@ -16,7 +16,19 @@ function apiRequest(method, url, datas = {}) {
         },
         timeout: 5000
     };
-    return axios(o);
+    return axios(o)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+        if (error.response && error.response.status === 401) {
+            console.log("Unauthorized");
+            window.location.href = '/login';
+        } else {
+            console.error('API request error:', error);
+        }
+        return Promise.reject(error);
+    });
 }
 
 export default {

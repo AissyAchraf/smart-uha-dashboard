@@ -3,9 +3,9 @@ import API from "../utils/api";
 import useLoading from "../hooks/useLoading";
 
 const initialState = {
-    token: null,
-    user: null,
-    isAuthenticated: false
+    token: sessionStorage.getItem("token"),
+    user: JSON.parse(sessionStorage.getItem("user")),
+    isAuthenticated: sessionStorage.getItem("isAuthenticated"),
 };
 
 const reducer = (state, action) => {
@@ -42,21 +42,19 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
-    const { isLoading, setIsLoading } = useLoading();
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true);
 
     const login = async (email, password) => {
         let user = null;
+        let token = null;
         await API.authenticate(email, password)
             .then(async data => {
-                setIsLoading(true);
                 setLoading(true);
-                user = await saveToken(data.data.token);
+                token = data.data.token;
+                user = await saveToken(token);
                 setLoading(false);
-                setIsLoading(false);
             }, function(error){
-                console.log(error);
                 switch(error.response?.data) {
                     case "401":
                         alert("login.authenticateError");
@@ -66,8 +64,7 @@ export const AuthProvider = ({ children }) => {
                 }
             });
         ;
-        const mockToken = "Jadii34bIibS5lPiwQyDHmKrblaUS6AcleWcV0CGzJuX1iOpOJL6xerD5EUTbr0I";
-        dispatch({ type: "LOGIN", payload: { token: mockToken, user: user } });
+        dispatch({ type: "LOGIN", payload: { token: token, user: user, isAuthenticated: true } });
     };
 
     const saveToken = async (token) => {
@@ -103,22 +100,35 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        setIsLoading(true);
-        const token = sessionStorage.getItem("token");
-        const isAuthenticated = sessionStorage.getItem("isAuthenticated") === "true";
-        const user = JSON.parse(sessionStorage.getItem("user"));
+        (async () => {
+            setLoading(true);
+            const token = sessionStorage.getItem("token");
+            const isAuthenticated = sessionStorage.getItem("isAuthenticated") === "true";
 
-        if (token && isAuthenticated) {
-            dispatch({
-                type: "INIT",
-                payload: { isAuthenticated: true, token, user: user },
-            });
-        } else {
-            dispatch({ type: "INIT", payload: { isAuthenticated: false, token: null, user: null } });
-        }
+            if (token && isAuthenticated) {
+                const user = API.getUser().then(response => {
+                    // Check if the status is 200 (OK) and we have user data
+                    if (response.status === 200 && response.data) {
+                        const user = response.data;
+                        dispatch({
+                            type: "INIT",
+                            payload: {isAuthenticated: true, token, user: user},
+                        });
+                    }
+                }).catch(error => {
+                    // Check if the error response status is 401 (Unauthorized)
+                    if (error.response && error.response.status === 401) {
+                        logout();
+                    } else {
+                        console.error('An error occurred:', error);
+                    }
+                });
+            } else {
+                dispatch({type: "INIT", payload: {isAuthenticated: false, token: null, user: null}});
+            }
 
-        setIsLoading(false);
-        setLoading(false);
+            setLoading(false);
+        })();
     }, []);
 
     // if (loading) {
@@ -130,10 +140,7 @@ export const AuthProvider = ({ children }) => {
     // }
 
     return (
-        <AuthContext.Provider value={{ ...state, method: "JWT", login, logout }}>
-            {isLoading && <svg className="loader" viewBox="25 25 50 50">
-                <circle r="20" cy="50" cx="50"></circle>
-            </svg>}
+        <AuthContext.Provider value={{ ...state, method: "JWT", login, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );
