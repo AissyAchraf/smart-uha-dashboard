@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+
+html,
+body,
+#root,
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.app {
+  display: flex;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Loader style */
+/* From Uiverse.io by barisdogansutcu */
+svg.loader {
+  width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: hsl(214, 97%, 59%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
+}
+
+/* Door Style */
+.door {
+  width: 8em;
+  height: 6em;
+  background-color: darkslategray;
+  /*border-radius: 1em;*/
+}
+
+.top-doors .left-door {
+  border-top-left-radius: 1em;
+}
+
+.top-doors .right-door {
+  border-top-right-radius: 1em;
+}
+
+.bottom-doors .left-door {
+  border-bottom-left-radius: 1em;
+}
+
+.bottom-doors .right-door {
+  border-bottom-right-radius: 1em;
+}
+
+.back-doors {
+  background-color: inherit;
+  border-radius: 1.5em;
+}
+
+.side-door {
+  width: 4em;
+  height: 12em;
+  background-color: darkslategray;
+  border-radius: 1em;
+  margin-right: -3em !important;
+}
+
+@-moz-keyframes flash {
+  from { background-color: rgb(168, 212, 226); }
+  to { background-color: rgb(185, 223, 231); }
+}
+
+@-webkit-keyframes flash {
+  from { background-color: rgb(168, 212, 226); }
+  to { background-color: rgb(185, 223, 231); }
+}
+
+@keyframes flash {
+  from { background-color: rgb(160, 208, 223); }
+  to { background-color: rgb(199, 236, 243); }
+}
+
+.closed {
+  background-color: darkgray;
+}
+
+.unlocked {
+  background-color: lightblue;
+  animation: flash 0.5s alternate infinite;
+}
+
+.opened {
+  background-color: lightsalmon;
+}
+
+.deactivated {
+  background-color: red;
+}
