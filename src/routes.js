@@ -5,6 +5,10 @@ import { authRoles } from "./auth/authRoles";
 // SESSION PAGES
 import SignIn from "./views/sessions/SignIn";
 
+// PAGES
+import SendColis from "./views/sendColis";
+import SendResume from "./views/sendResume";
+
 // Dashboard
 import Home from "./views/home";
 import Sidebar from "./views/global/Sidebar";
@@ -26,6 +30,8 @@ const routes = [
         children: [
             // dashboard route
             {path: "/", element: <Home />},
+            {path: "/sendColis", element: <SendColis />},
+            {path: "/sendResume", element: <SendResume />},
         ]
     },
 

@@ -7,6 +7,7 @@ import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 
@@ -122,10 +123,10 @@ const Sidebar = () => {
                         />
 
                         <Item
-                            id="Login"
-                            title={translate('login.connection')}
-                            to="/login"
-                            icon={<LoginOutlinedIcon />}
+                            id="SendColis"
+                            title={translate('home.sendPack')}
+                            to="/sendColis"
+                            icon={<IosShareIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />

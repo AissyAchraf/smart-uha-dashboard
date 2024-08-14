@@ -20,6 +20,7 @@ export default {
     },
     sendColis:{
         title: "Packages delivery form",
+        subtitle: "Complete this form to ship your packages with ease",
         origin: "Origin",
         destination: "Destination",
         receiver : "Receiver",
@@ -28,7 +29,9 @@ export default {
         send:"Send",
         cancel:"Cancel",
         dueDate: "Date and Time of delivery",
-        samePoints: "The origin and the destination must be different"
+        samePoints: "The origin and the destination must be different",
+        success: "Your delivery order has been created!",
+        error: "An error occurred. Please try again.",
     },
     login:{
         connection:"Connection",
@@ -36,6 +39,8 @@ export default {
         authenticateError:"Connection error : bad login or password"
     },
     sendResume: {
+        title: "Packages delivery confitmation",
+        subtitle: "Please review the details of your request below, then click 'Confirm' to finalize.",
         summary:"Summary",
         origin: "Origin",
         size: "Size",
@@ -45,6 +50,9 @@ export default {
         },
         destination: "Destination",
         receiver: "Receiver",
+        dueAt: "Date and Time of delivery",
+        confirmed: "Order Confirmed!",
+        canceled: "Order Canceled.",
         confirm: "Confirm",
         cancel: "Cancel",
         loading: "Loading..."
@@ -200,5 +208,8 @@ export default {
     },
     editableInput: {
         empty: "None"
+    },
+    form: {
+        required: "Required",
     }
 }

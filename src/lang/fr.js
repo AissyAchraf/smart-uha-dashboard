@@ -20,6 +20,7 @@ export default {
     },
     sendColis:{
         title: "Formulaire d'envoi de Colis",
+        subtitle: "Complétez ce formulaire pour expédier vos colis en toute simplicité",
         origin: "Origine",
         destination: "Destination",
         receiver : "Destinataire",
@@ -28,7 +29,9 @@ export default {
         send:"Envoyer",
         cancel:"Annuler",
         dueDate: "Date et horaire de livraison",
-        samePoints: "L'origine et la destination doivent être différentes"
+        samePoints: "L'origine et la destination doivent être différentes",
+        success: "Votre commande de livraison a été créée!",
+        error: "Une erreur est survenue. Veuillez réessayer.",
     },
     login:{
         connection:"Connexion",
@@ -36,6 +39,8 @@ export default {
         authenticateError:"Erreur de connexion : L'identifiant ou le mot de passe est incorrect"
     },
     sendResume: {
+        title: "Confirmation de la demande",
+        subtitle: "Veuillez vérifier les détails de votre demande ci-dessous, puis cliquez sur 'Confirmer' pour finaliser.",
         summary:"Récapitulatif",
         origin: "Origine",
         size: "Taille",
@@ -45,6 +50,9 @@ export default {
         },
         destination: "Destination",
         receiver: "Destinataire",
+        dueAt: "Date et horaire de livraison",
+        confirmed: "Demande Confirmée!",
+        canceled: "Demande Annulée.",
         confirm: "Confirmer",
         cancel: "Annuler",
         loading: "Chargement en cours..."
@@ -202,5 +210,8 @@ export default {
     },
     editableInput: {
         empty: "Aucun"
+    },
+    form: {
+        required: "Requis",
     }
 }
