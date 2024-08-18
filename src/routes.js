@@ -22,9 +22,10 @@ const Layout = () => {
     return (
         <div className="app">
             <Sidebar />
-            <main className="content" style={{ marginLeft: sidebarWidth, transition: 'margin-left 0.3s ease-in-out' }}>
-                <Topbar />
-                <Outlet />
+            <main className="content"
+                  style={{marginLeft: sidebarWidth, transition: 'margin-left 0.3s ease-in-out'}}>
+                <Topbar/>
+                <Outlet/>
             </main>
         </div>
     );
@@ -34,7 +35,7 @@ const routes = [
     {
         element: (
             <AuthGuard>
-                <Layout />
+                <Layout/>
             </AuthGuard>
         ),
         children: [

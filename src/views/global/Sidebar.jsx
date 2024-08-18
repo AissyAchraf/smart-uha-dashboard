@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -11,6 +11,7 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
+import { useLocation } from 'react-router-dom';
 import useSidebar from "../../hooks/useSidebar";
 
 const Item = ({ id, title, to, icon, selected, setSelected }) => {
@@ -37,8 +38,22 @@ const Sidebar = () => {
     const { user } = useAuth();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const location = useLocation();
     const { isCollapsed, sidebarWidth, toggleSidebar } = useSidebar();
     const [selected, setSelected] = useState("Home");
+
+    useEffect(() => {
+        const path = location.pathname;
+        if (path === "/") {
+            setSelected("Home");
+        } else if (path === "/sendColis") {
+            setSelected("SendColis");
+        } else if (path === "/track") {
+            setSelected("Track");
+        } else if (path === "/sendResume") {
+            setSelected("SendResume");
+        }
+    }, [location]);
 
     return (
         <Box
@@ -136,7 +151,7 @@ const Sidebar = () => {
                         />
 
                         <Item
-                            id="TrackChanges"
+                            id="Track"
                             title={translate('track.ongoing')}
                             to="/track"
                             icon={<TrackChangesOutlinedIcon />}
