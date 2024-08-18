@@ -58,6 +58,8 @@ export default {
         loading: "Chargement en cours..."
     },
     track:{
+        title: "Suivez vos livraisons",
+        subtitle: "Consultez le statut de vos livraisons en cours ci-dessous et restez informé de leur progression.",
         loading: "Chargement en cours...",
         letters:"Vos Couriers",
         ongoing: "Livraisons en cours",
@@ -213,5 +215,11 @@ export default {
     },
     form: {
         required: "Requis",
+    },
+    trackSteps: {
+        sendLocation: "Lieu d'envoie",
+        packagePlacement: "Expédition",
+        onTheWay: "En route",
+        deliveryConfirmation: "Confirmation de livraison"
     }
 }

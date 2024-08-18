@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import IosShareIcon from '@mui/icons-material/IosShare';
+import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 
@@ -127,6 +128,15 @@ const Sidebar = () => {
                             title={translate('home.sendPack')}
                             to="/sendColis"
                             icon={<IosShareIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Item
+                            id="TrackChanges"
+                            title={translate('track.ongoing')}
+                            to="/track"
+                            icon={<TrackChangesOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />

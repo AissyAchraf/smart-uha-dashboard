@@ -58,6 +58,8 @@ export default {
         loading: "Loading..."
     },
     track:{
+        title: "Track Your Deliveries",
+        subtitle: "View the status of your ongoing deliveries below and stay updated on their progress.",
         loading: "Loading...",
         letters: "Your Letters",
         ongoing: "Ongoing deliveries",
@@ -211,5 +213,11 @@ export default {
     },
     form: {
         required: "Required",
+    },
+    trackSteps: {
+        sendLocation: "Send Location",
+        packagePlacement: "Shipping",
+        onTheWay: "On The Way",
+        deliveryConfirmation: "Delivery Confirmation",
     }
 }

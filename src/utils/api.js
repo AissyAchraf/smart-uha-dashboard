@@ -200,12 +200,12 @@ export default {
     },
 
     resumeDemand: function(demandId) {
-        let token = StorageManager.getToken();
+        let token = sessionStorage.getItem("token");
         return apiRequest('PUT', `/demand/${demandId}/resume`, {token: token});
     },
 
     openDemand: function (demandId) {
-        let token = StorageManager.getToken();
+        let token = sessionStorage.getItem("token");
         return apiRequest('PUT', `/demand/${demandId}/open`, {token: token});
     },
 

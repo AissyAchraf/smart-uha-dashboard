@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body,
@@ -141,4 +144,65 @@ circle {
 
 .deactivated {
   background-color: red;
+}
+
+/* Progress Bar */
+.progressbar{
+  position: relative;
+  width: 100%;
+  height: 1em;
+}
+
+.wrapper{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bar{
+  height: 1em;
+  border-radius: 10px;
+  transition: width 0.5s ease-out;
+}
+
+.bar-color{
+  background-color:#71aad8;
+}
+
+.underbar{
+  width: 100%;
+  height: 1em;
+  margin-bottom: -1em !important;
+  border-radius: 10px;
+}
+
+.underbar-color{
+  background-color: #c8cacc;
+}
+
+.dots{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dots>div{
+  z-index: 1;
+  height:2em;
+  width:2em;
+  border-radius:1em;
+  margin-top: -1em;
+  margin-bottom: -1.7em;
+  transition: background-color 2.5s ease-out;
+}
+
+.state-reached{
+  background-color: #4989bd;
+}
+.state-pending{
+  background-color: #c8cacc;
 }

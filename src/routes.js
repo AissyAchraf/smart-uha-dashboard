@@ -8,6 +8,7 @@ import SignIn from "./views/sessions/SignIn";
 // PAGES
 import SendColis from "./views/sendColis";
 import SendResume from "./views/sendResume";
+import Track from "./views/track";
 
 // Dashboard
 import Home from "./views/home";
@@ -30,8 +31,12 @@ const routes = [
         children: [
             // dashboard route
             {path: "/", element: <Home />},
+            // Send Package route
             {path: "/sendColis", element: <SendColis />},
+            // Send Resume route
             {path: "/sendResume", element: <SendResume />},
+            // Track route
+            {path: "/track", element: <Track />},
         ]
     },
 

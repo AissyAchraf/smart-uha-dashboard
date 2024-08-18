@@ -56,7 +56,7 @@ export default function SendResume () {
     const confirm = () => {
         API.confirmDemand(localStorage.getItem('demandId'))
             .then(() => {
-                navigate("/");
+                navigate("/track");
                 showSnackbar(translate("sendResume.confirmed"), 'success');
             });
     }

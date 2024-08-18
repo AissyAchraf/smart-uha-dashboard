@@ -48,26 +48,26 @@ const DoorMonitor = ({ doors = [] }) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     marginTop: 4,
-                    padding: 1,
+                    padding: '5px',
                 }}
                 className="back-doors"
             >
                 {/* Top Doors */}
                 <Grid sx={{ display: 'flex' }} justifyContent="center" className="top-doors">
-                    <Grid sx={{ m: 1 }} item>
+                    <Grid sx={{ m: '3px' }} item>
                         <Box className={`door left-door ${doorClasses[0] || ""}`}></Box>
                     </Grid>
-                    <Grid sx={{ m: 1 }} item>
+                    <Grid sx={{ m: '3px' }} item>
                         <Box className={`door right-door ${doorClasses[1] || ""}`}></Box>
                     </Grid>
                 </Grid>
 
                 {/* Bottom Doors */}
                 <Grid justifyContent="center" className="bottom-doors" sx={{ display: 'flex' }}>
-                    <Grid sx={{ m: 1 }} item>
+                    <Grid sx={{ m: '3px' }} item>
                         <Box className={`door left-door ${doorClasses[2] || ""}`}></Box>
                     </Grid>
-                    <Grid sx={{ m: 1 }} item>
+                    <Grid sx={{ m: '3px' }} item>
                         <Box className={`door right-door ${doorClasses[3] || ""}`}></Box>
                     </Grid>
                 </Grid>
