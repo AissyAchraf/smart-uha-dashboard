@@ -11,10 +11,12 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
+import useSidebar from "../../hooks/useSidebar";
 
 const Item = ({ id, title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+
     return (
         <MenuItem
             active={selected === id}
@@ -35,11 +37,12 @@ const Sidebar = () => {
     const { user } = useAuth();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const { isCollapsed, sidebarWidth, toggleSidebar } = useSidebar();
     const [selected, setSelected] = useState("Home");
 
     return (
         <Box
+            className="sidebar"
             sx={{
                 "& .pro-sidebar-inner": {
                     background: `${colors.primary[400]} !important`,
@@ -62,7 +65,7 @@ const Sidebar = () => {
                 <Menu iconShape="square">
                     {/* LOGO AND MENU ICON */}
                     <MenuItem
-                        onClick={() => setIsCollapsed(!isCollapsed)}
+                        onClick={toggleSidebar}
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
@@ -79,7 +82,7 @@ const Sidebar = () => {
                                 <Typography variant="h3" color={colors.grey[100]}>
                                     SMART UHA
                                 </Typography>
-                                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                                <IconButton onClick={toggleSidebar}>
                                     <MenuOutlinedIcon />
                                 </IconButton>
                             </Box>

@@ -18,6 +18,18 @@ body,
   position: relative;
 }
 
+.content {
+  /*margin-left: 250px; !* Shift the content to the right by the width of the sidebar *!*/
+  padding-left: 20px; /* Optional: Add some padding to the content */
+  min-height: 100%;
+}
+
+.sidebar {
+  height: 100vh;
+  min-height: 100%;
+  position: fixed;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
