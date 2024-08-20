@@ -179,7 +179,7 @@ const Home = () => {
                 <Header title={translate('header.home')} subtitle={translate('home.welcome')}></Header>
             </Box>
             <Box
-                m="40px 0 0 0"
+                m="30px 0 0 0"
                 height="75vh"
                 sx={{
                     "& .MuiDataGrid-root": {
