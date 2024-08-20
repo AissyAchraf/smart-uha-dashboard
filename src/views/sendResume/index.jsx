@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, Button, Container, Grid, useTheme } from '@mui/material';
+import { Box, Card, CardContent, Divider, Typography, Button, Container, Grid, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { tokens } from "../../theme";
 import useLang from "../../hooks/useLang";
@@ -9,6 +9,7 @@ import { DemandSizes } from "../../utils/enums/DemandSizes";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import useSnackbar from "../../hooks/useSnackbar";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function SendResume () {
     const theme = useTheme();
@@ -65,88 +66,99 @@ export default function SendResume () {
         <Box mx="20px" mt="30px">
             <Header title={translate('sendResume.title')} subtitle={translate('sendResume.subtitle')}></Header>
 
-            <Typography variant="h3" color={colors.grey[100]} fontWeight="bold" sx={{ mb: 3 }} >{translate("sendResume.summary")}</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Card sx={{ p: 2, mt: "30px" }} >
+                    <Typography variant="h4" fontWeight="bold" mt={1} mb={2} ml={2}>
+                        <InfoOutlinedIcon sx={{mr: 1}}/>
+                        {translate("sendResume.summary")}
+                    </Typography>
 
-            {/* First Line */}
-            <Grid container spacing={2} sx={{ mb: 2 }}>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="body1" component="div">
-                        <Typography component="span" sx={{ fontWeight: 'bold' }}>
-                            {translate("sendResume.origin")}:
-                        </Typography>{" "}
-                        {demand.depositLocation?.name}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="body1" component="div">
-                        <Typography component="span" sx={{ fontWeight: 'bold' }}>
-                            {translate("sendResume.size")}:
-                        </Typography>{" "}
-                        {formatDeliverySize(demand.size)}
-                    </Typography>
-                </Grid>
-            </Grid>
+                    <Divider inset="none" sx={{ mx: 2 }} />
+                    <CardContent sx={{ mt: 2 }}>
 
-            {/* Second Line */}
-            <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="body1" component="div">
-                        <Typography component="span" sx={{ fontWeight: 'bold' }}>
-                            {translate("sendResume.destination")}:
-                        </Typography>{" "}
-                        {demand.withdrawalLocation?.name}
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="body1" component="div">
-                        <Typography component="span" sx={{ fontWeight: 'bold' }}>
-                            {translate("sendResume.receiver")}:
-                        </Typography>{" "}
-                        {demand.receiver?._id}
-                    </Typography>
-                </Grid>
-            </Grid>
+                        {/* First Line */}
+                        <Grid container spacing={2} sx={{ mb: 2 }}>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1" component="div">
+                                    <Typography component="span" sx={{ fontWeight: 'bold' }}>
+                                        {translate("sendResume.origin")}:
+                                    </Typography>{" "}
+                                    {demand.depositLocation?.name}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1" component="div">
+                                    <Typography component="span" sx={{ fontWeight: 'bold' }}>
+                                        {translate("sendResume.size")}:
+                                    </Typography>{" "}
+                                    {formatDeliverySize(demand.size)}
+                                </Typography>
+                            </Grid>
+                        </Grid>
 
-            {/* Theard Line */}
-            <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="body1" component="div">
-                        <Typography component="span" sx={{ fontWeight: 'bold' }}>
-                            {translate("sendResume.dueAt")}:
-                        </Typography>{" "}
-                        {new Date(demand.dueAt).toLocaleString('fr-FR', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: true,
-                        })}
-                    </Typography>
-                </Grid>
-            </Grid>
+                        {/* Second Line */}
+                        <Grid container spacing={2} sx={{ mb: 3 }}>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1" component="div">
+                                    <Typography component="span" sx={{ fontWeight: 'bold' }}>
+                                        {translate("sendResume.destination")}:
+                                    </Typography>{" "}
+                                    {demand.withdrawalLocation?.name}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1" component="div">
+                                    <Typography component="span" sx={{ fontWeight: 'bold' }}>
+                                        {translate("sendResume.receiver")}:
+                                    </Typography>{" "}
+                                    {demand.receiver?._id}
+                                </Typography>
+                            </Grid>
+                        </Grid>
 
-            {/* Action Buttons */}
-            <Box display="flex">
-                <Button
-                    sx = {{ mr: 2 }}
-                    variant="contained"
-                    color="success"
-                    size="large"
-                    onClick={confirm}
-                >
-                    <CheckCircleOutlineIcon sx={{ mr: 1 }} fontSize="small" />
-                    {translate("sendResume.confirm")}
-                </Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    onClick={back}
-                >
-                    <CancelOutlinedIcon sx={{ mr: 1 }} fontSize="small" />
-                    {translate("sendResume.cancel")}
-                </Button>
+                        {/* Theard Line */}
+                        <Grid container spacing={2} sx={{ mb: 3 }}>
+                            <Grid item xs={12} sm={6}>
+                                <Typography variant="body1" component="div">
+                                    <Typography component="span" sx={{ fontWeight: 'bold' }}>
+                                        {translate("sendResume.dueAt")}:
+                                    </Typography>{" "}
+                                    {new Date(demand.dueAt).toLocaleString('fr-FR', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true,
+                                    })}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+
+                        {/* Action Buttons */}
+                        <Box display="flex">
+                            <Button
+                                sx = {{ mr: 2 }}
+                                variant="contained"
+                                color="success"
+                                size="large"
+                                onClick={confirm}
+                            >
+                                <CheckCircleOutlineIcon sx={{ mr: 1 }} fontSize="small" />
+                                {translate("sendResume.confirm")}
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                onClick={back}
+                            >
+                                <CancelOutlinedIcon sx={{ mr: 1 }} fontSize="small" />
+                                {translate("sendResume.cancel")}
+                            </Button>
+                        </Box>
+                    </CardContent>
+                </Card>
             </Box>
         </Box>
     )
