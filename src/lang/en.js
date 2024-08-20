@@ -21,6 +21,7 @@ export default {
     sendColis:{
         title: "Packages delivery form",
         subtitle: "Complete this form to ship your packages with ease",
+        cardTitle: "Schedule a delivery request",
         origin: "Origin",
         destination: "Destination",
         receiver : "Receiver",

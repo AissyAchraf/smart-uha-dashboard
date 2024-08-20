@@ -8,6 +8,14 @@ import React from "react";
 import TrackInformation from "../../components/TrackInformation";
 import { DemandStates } from "../../utils/enums/DemandStates";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
+
+import { FreeMode, Pagination } from "swiper/modules";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -73,27 +81,37 @@ export default function Track() {
 
     return (
         <Box mx="20px" mt="30px">
-            <Header title={translate('track.ongoing')} subtitle={translate('track.subtitle')}></Header>
+            <Header sx={{ mt: '20px' }} title={translate('track.ongoing')} subtitle={translate('track.subtitle')}></Header>
 
-            <Box sx={{ mt: 2 }}>
-                {demands.map((demand) => (
-                    <Box sx={{ marginLeft: 'auto',
-                        marginRight: 'auto',
-                        maxWidth: '650px',
-                        // padding: '10px',
-                        textAlign: 'center' }}>
-                        <Card sx={{ maxWidth: '600px' }}>
-                            <CardMedia
-                                sx={{ height: 140 }}
-                                image="/assets/images/smartuha.png"
-                                title="SMART UHA"
-                            />
-                            <CardContent>
-                                <TrackInformation key={demand._id} demand={demand} />
-                            </CardContent>
-                        </Card>
-                    </Box>
-                ))}
+            <Box className="flex items-center flex-col h-screen">
+                {demands.length > 0 ?
+                    (<Swiper
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[FreeMode, Pagination]}
+                        className="max-w-[100%] lg:max-w-[50%]"
+                    >
+                    {demands.map((demand) => (
+                        <SwiperSlide key={demand._id} sx={{ width: '100%' }}>
+                            <Card sx={{ maxWidth: '600px', marginBottom: '80px'}} className="flex flex-col gap-6 group relative verflow-hidden cursor-pointer mx-6 my-8">
+                                <CardMedia
+                                    sx={{ height: 140 }}
+                                    image="/assets/images/smartuha.png"
+                                    title="SMART UHA"
+                                />
+                                <CardContent>
+                                    <TrackInformation key={demand._id} demand={demand} />
+                                </CardContent>
+                            </Card>
+                        </SwiperSlide>
+                    ))}
+                    </Swiper>)
+                    : (
+                        <>Aucune demande en cours</>
+                    )
+                }
             </Box>
         </Box>
     )

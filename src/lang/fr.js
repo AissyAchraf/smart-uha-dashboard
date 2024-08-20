@@ -21,6 +21,7 @@ export default {
     sendColis:{
         title: "Formulaire d'envoi de Colis",
         subtitle: "Complétez ce formulaire pour expédier vos colis en toute simplicité",
+        cardTitle: "Programmer une demande de livraison",
         origin: "Origine",
         destination: "Destination",
         receiver : "Destinataire",

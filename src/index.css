@@ -126,6 +126,19 @@ circle {
   margin-right: -3em !important;
 }
 
+@media (max-width: 600px) {
+  .door {
+    width: 7em;
+    height: 5em;
+  }
+
+  .side-door {
+    width: 3em;
+    height: 10em;
+    margin-right: -2em !important;
+  }
+}
+
 @-moz-keyframes flash {
   from { background-color: rgb(168, 212, 226); }
   to { background-color: rgb(185, 223, 231); }

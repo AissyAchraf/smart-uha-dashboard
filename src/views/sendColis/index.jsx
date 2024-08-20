@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Box, Button, TextField, MenuItem, useTheme } from "@mui/material";
+import { Box, Card, Divider, CardContent, Button, TextField, Typography, MenuItem, useTheme } from "@mui/material";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
 import { Formik } from "formik";
@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import API from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
 import useSnackbar from "../../hooks/useSnackbar";
+import MoreTimeOutlinedIcon from '@mui/icons-material/MoreTimeOutlined';
 
 let d = new Date();
 let now = new Date()
@@ -118,154 +119,168 @@ export default function SendColis () {
 
     if(rois !== undefined && users !== undefined && vehicles !== undefined)
         return (
-            <Box mx="20px" mt="30px">
+            <Box mx="20px" my="30px">
                 <Header title={translate('sendColis.title')} subtitle={translate('sendColis.subtitle')}></Header>
 
-                <Formik
-                    onSubmit={handleFormSubmit}
-                    initialValues={initialValues}
-                    validationSchema={checkoutSchema}
-                    enableReinitialize={true}
-                >
-                    {({
-                          values,
-                          errors,
-                          touched,
-                          handleBlur,
-                          handleChange,
-                          handleSubmit,
-                          setFieldValue,
-                      }) => (
-                        <form onSubmit={handleSubmit}>
-                            <Box
-                                display="grid"
-                                gap="30px"
-                                gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                                sx={{
-                                    "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-                                }}
-                            >
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label={translate("sendColis.origin")}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.origin}
-                                    name="origin"
-                                    error={!!touched.origin && !!errors.origin}
-                                    helperText={touched.origin && errors.origin}
-                                    sx={{ gridColumn: "span 2" }}
-                                    select
-                                >
-                                    {rois.map((roi) => (
-                                        <MenuItem id={roi._id} key={roi._id} value={roi._id}>
-                                            {roi.name}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                <Card sx={{ p: 2 }}>
+                    <Typography variant="h4" fontWeight="bold" mt={1} mb={2} ml={2}>
+                        <MoreTimeOutlinedIcon sx={{mr: 1}}/>
+                        {translate("sendColis.cardTitle")}
+                    </Typography>
+                    <Divider inset="none" sx={{ mx: 2 }} />
+                    <CardContent sx={{ mt: 2 }}>
+                        <Formik
+                            onSubmit={handleFormSubmit}
+                            initialValues={initialValues}
+                            validationSchema={checkoutSchema}
+                            enableReinitialize={true}
+                        >
+                            {({
+                                  values,
+                                  errors,
+                                  touched,
+                                  handleBlur,
+                                  handleChange,
+                                  handleSubmit,
+                                  setFieldValue,
+                              }) => (
+                                <form onSubmit={handleSubmit}>
+                                    <Box
+                                        display="grid"
+                                        gap="30px"
+                                        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                                        sx={{
+                                            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                                        }}
+                                    >
+                                        <TextField
+                                            fullWidth
+                                            // variant="filled"
+                                            type="text"
+                                            label={translate("sendColis.origin")}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            value={values.origin}
+                                            name="origin"
+                                            error={!!touched.origin && !!errors.origin}
+                                            helperText={touched.origin && errors.origin}
+                                            sx={{ gridColumn: "span 2" }}
+                                            select
+                                        >
+                                            {rois.map((roi) => (
+                                                <MenuItem id={roi._id} key={roi._id} value={roi._id}>
+                                                    {roi.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
 
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label={translate("sendColis.destination")}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.destination}
-                                    name="destination"
-                                    error={!!touched.destination && !!errors.destination}
-                                    helperText={touched.destination && errors.destination}
-                                    sx={{ gridColumn: "span 2" }}
-                                    select
-                                >
-                                    {rois.map((roi) => (
-                                        <MenuItem id={roi._id} key={roi._id} value={roi._id}>
-                                            {roi.name}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                                        <TextField
+                                            fullWidth
+                                            // variant="filled"
+                                            type="text"
+                                            label={translate("sendColis.destination")}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            value={values.destination}
+                                            name="destination"
+                                            error={!!touched.destination && !!errors.destination}
+                                            helperText={touched.destination && errors.destination}
+                                            sx={{ gridColumn: "span 2" }}
+                                            select
+                                        >
+                                            {rois.map((roi) => (
+                                                <MenuItem id={roi._id} key={roi._id} value={roi._id}>
+                                                    {roi.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
 
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label={translate("sendColis.receiver")}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.receiver}
-                                    name="receiver"
-                                    error={!!touched.receiver && !!errors.receiver}
-                                    helperText={touched.receiver && errors.receiver}
-                                    sx={{ gridColumn: "span 2" }}
-                                />
+                                        <TextField
+                                            fullWidth
+                                            // variant="filled"
+                                            type="text"
+                                            label={translate("sendColis.receiver")}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            value={values.receiver}
+                                            name="receiver"
+                                            error={!!touched.receiver && !!errors.receiver}
+                                            helperText={touched.receiver && errors.receiver}
+                                            sx={{ gridColumn: "span 2" }}
+                                        />
 
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label={translate("sendColis.size")}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.size?.toString()}
-                                    name="size"
-                                    error={!!touched.size && !!errors.size}
-                                    helperText={touched.size && errors.size}
-                                    sx={{ gridColumn: "span 2" }}
-                                    select
-                                >
-                                    <MenuItem value="1">Lettres</MenuItem>
-                                    <MenuItem value="2">Colis</MenuItem>
-                                </TextField>
+                                        <TextField
+                                            fullWidth
+                                            // variant="filled"
+                                            type="text"
+                                            label={translate("sendColis.size")}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            value={values.size?.toString()}
+                                            name="size"
+                                            error={!!touched.size && !!errors.size}
+                                            helperText={touched.size && errors.size}
+                                            sx={{ gridColumn: "span 2" }}
+                                            select
+                                        >
+                                            <MenuItem value="1">Lettres</MenuItem>
+                                            <MenuItem value="2">Colis</MenuItem>
+                                        </TextField>
 
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label={translate("sendColis.vehicle")}
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.vehicle?.toString()}
-                                    name="vehicle"
-                                    error={!!touched.vehicle && !!errors.vehicle}
-                                    helperText={touched.vehicle && errors.vehicle}
-                                    sx={{ gridColumn: "span 2" }}
-                                    select
-                                >
-                                    {vehicles.map((vehicle) => (
-                                        <MenuItem id={vehicle._id} key={vehicle._id} value={vehicle._id}>
-                                            {vehicle.name}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                                        <TextField
+                                            fullWidth
+                                            // variant="filled"
+                                            type="text"
+                                            label={translate("sendColis.vehicle")}
+                                            onBlur={handleBlur}
+                                            onChange={handleChange}
+                                            value={values.vehicle?.toString()}
+                                            name="vehicle"
+                                            error={!!touched.vehicle && !!errors.vehicle}
+                                            helperText={touched.vehicle && errors.vehicle}
+                                            sx={{ gridColumn: "span 2" }}
+                                            select
+                                        >
+                                            {vehicles.map((vehicle) => (
+                                                <MenuItem id={vehicle._id} key={vehicle._id} value={vehicle._id}>
+                                                    {vehicle.name}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
 
-                                <DateTimePicker
-                                    fullWidth
-                                    label={translate("sendColis.dueDate")}
-                                    value={values.dueDate}
-                                    onChange={(value) => setFieldValue('dueDate', value)}
-                                    name="dueDate"
-                                    error={!!touched.dueDate && !!errors.dueDate}
-                                    helperText={touched.dueDate && errors.dueDate}
-                                    sx={{ gridColumn: "span 2" }}
-                                    slots={{
-                                        textField: (params) => <TextField fullWidth variant='filled' type="text" {...params} />
-                                    }}
-                                />
-                            </Box>
-                            <Box display="flex" justifyContent="end" mt="20px">
-                                <Button type="reset" sx={{ mr: 2 }} variant="contained">
-                                    <ClearIcon sx={{ mr: 2 }} fontSize="small" /> {translate("sendColis.cancel")}
-                                </Button>
+                                        <DateTimePicker
+                                            fullWidth
+                                            label={translate("sendColis.dueDate")}
+                                            value={values.dueDate}
+                                            onChange={(value) => setFieldValue('dueDate', value)}
+                                            name="dueDate"
+                                            error={!!touched.dueDate && !!errors.dueDate}
+                                            helperText={touched.dueDate && errors.dueDate}
+                                            sx={{ gridColumn: "span 2" }}
+                                            slots={{
+                                                textField: (params) =>
+                                                    <TextField fullWidth
+                                                               // variant='filled'
+                                                               type="text" {...params} />
+                                            }}
+                                        />
+                                    </Box>
+                                    <Box display="flex" mt="20px">
+                                        <Button type="submit" sx={{ mr: 2 }} size="large" color="info" variant="contained">
+                                            {/*<SendIcon sx={{ mr: 2 }} fontSize="small" /> */}
+                                            {translate("sendColis.send")}
+                                        </Button>
 
-                                <Button type="submit" color="info" variant="contained">
-                                    <SendIcon sx={{ mr: 2 }} fontSize="small" /> {translate("sendColis.send")}
-                                </Button>
-                            </Box>
-                        </form>
-                    )}
-                </Formik>
+                                        <Button type="reset" color="info" size="large" variant="outlined">
+                                            {/*<ClearIcon sx={{ mr: 2 }} fontSize="small" /> */}
+                                            {translate("sendColis.cancel")}
+                                        </Button>
+                                    </Box>
+                                </form>
+                            )}
+                        </Formik>
+                    </CardContent>
+                </Card>
             </Box>
         )
 }

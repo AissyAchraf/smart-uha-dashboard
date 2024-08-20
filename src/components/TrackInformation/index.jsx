@@ -9,6 +9,7 @@ import { DoorStates } from '../../utils/enums/DoorStates';
 import API from '../../utils/api';
 import { DemandStates } from '../../utils/enums/DemandStates';
 import { formatDemandState } from '../../utils/enum2string';
+import { useMediaQuery } from '@mui/material';
 
 // Steps Icons
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
@@ -26,6 +27,7 @@ const TrackInformation = ({ demand }) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const isSender = demand.emitter._id === user._id;
     const isReceiver = demand.receiver._id === user._id;
+    const isSmallScreen = useMediaQuery('(max-width:600px)');
 
     const getStep = (state) => {
         if(state < 15)
@@ -40,10 +42,10 @@ const TrackInformation = ({ demand }) => {
     }
 
     const steps = [
-        { description: translate("trackSteps.sendLocation"), icon: <LocationOnOutlinedIcon />},
-        { description: translate("trackSteps.packagePlacement"), icon: <IosShareOutlinedIcon />},
-        { description: translate("trackSteps.onTheWay"), icon: <LocalShippingOutlinedIcon />},
-        { description: translate("trackSteps.deliveryConfirmation"), icon: <VerifiedOutlinedIcon />},
+        { description: translate("trackSteps.sendLocation"), icon: <LocationOnOutlinedIcon fontSize={isSmallScreen ? "small" : "medium"}/>},
+        { description: translate("trackSteps.packagePlacement"), icon: <IosShareOutlinedIcon fontSize={isSmallScreen ? "small" : "medium"}/>},
+        { description: translate("trackSteps.onTheWay"), icon: <LocalShippingOutlinedIcon fontSize={isSmallScreen ? "small" : "medium"}/>},
+        { description: translate("trackSteps.deliveryConfirmation"), icon: <VerifiedOutlinedIcon fontSize={isSmallScreen ? "small" : "medium"}/>},
     ];
 
     const updateVehicleDoors = () => {
@@ -220,11 +222,9 @@ const TrackInformation = ({ demand }) => {
         <Box sx={{
             marginLeft: 'auto',
             marginRight: 'auto',
-            maxWidth: '650px',
-            // padding: '10px',
-            // border: '2px solid rgba(0, 0, 0, 0.51)',
-            // borderRadius: '10px',
-            // textAlign: 'center'
+            maxWidth: '100%',
+            width: '100%',
+            alignSelf: 'center'
         }}>
             <Card sx={{ px: 4 }}>
                 <CardContent>
