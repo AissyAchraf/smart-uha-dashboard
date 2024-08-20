@@ -124,12 +124,13 @@ export default function Track() {
                             ))}
                         </Swiper>)
                         : (
-                            <Box className="flex items-center justify-center flex-col" sx={{ mt: 10, width: '100%' }}>
-                                <Typography variant="h3">Aucune livraison en cours</Typography>
+                            <Box className="flex items-center justify-center flex-col" sx={{ mt: '30px', width: '100%' }}>
+                                <Typography variant="h3">{translate("track.noDemands")}</Typography>
                                 <img src="assets/illustrations/delivery-1.png" style={{ width: '450px' }}/>
-                                <Typography variant="h3">Vous n'avez actuellement aucune livraison en cours. Pourquoi ne pas envoyer un colis dès maintenant ?</Typography>
+                                <Typography variant="h3">{translate("track.nDeliveriesInProgress")}</Typography>
                                 <br/>
-                                <Button color="info" size="large" variant="contained" onClick={goToSendPackage}>Envoyer un colis</Button>
+                                <br/>
+                                <Button color="info" size="large" variant="contained" onClick={goToSendPackage}>{translate("home.sendPack")}</Button>
                             </Box>
                         )
                     }

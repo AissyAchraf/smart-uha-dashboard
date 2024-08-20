@@ -64,7 +64,9 @@ export default {
         loading: "Loading...",
         letters: "Your Letters",
         ongoing: "Ongoing deliveries",
-        complete: "Completed deliveries"
+        complete: "Completed deliveries",
+        noDemands: "No Ongoing Deliveries",
+        nDeliveriesInProgress: "You currently have no deliveries in progress. Why not send a package now?"
     },
     trackInformation:{
         open:"Unlock",

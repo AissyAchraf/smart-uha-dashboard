@@ -64,7 +64,9 @@ export default {
         loading: "Chargement en cours...",
         letters:"Vos Couriers",
         ongoing: "Livraisons en cours",
-        complete: "Livraisons terminées"
+        complete: "Livraisons terminées",
+        noDemands: "Aucune livraison en cours",
+        nDeliveriesInProgress: "Vous n'avez actuellement aucune livraison en cours. Pourquoi ne pas envoyer un colis dès maintenant ?"
     },
     trackInformation:{
         open: "Débloquer",
