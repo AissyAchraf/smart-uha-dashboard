@@ -9,6 +9,7 @@ import { LangProvider } from "./contexts/LangContext";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { SnackbarProvider } from './contexts/SnackbarContext';
 import { SidebarProvider } from './contexts/SidebarContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 import routes from "./routes";
 import Sidebar from "./views/global/Sidebar";
@@ -22,16 +23,18 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <LangProvider>
                 <AuthProvider>
-                    <SidebarProvider>
-                        <SnackbarProvider>
-                            <ColorModeContext.Provider value={colorMode}>
-                                <ThemeProvider theme={theme}>
-                                    <CssBaseline/>
-                                    {content}
-                                </ThemeProvider>
-                            </ColorModeContext.Provider>
-                        </SnackbarProvider>
-                    </SidebarProvider>
+                        <SidebarProvider>
+                            <SnackbarProvider>
+                                <NotificationProvider>
+                                    <ColorModeContext.Provider value={colorMode}>
+                                        <ThemeProvider theme={theme}>
+                                            <CssBaseline/>
+                                            {content}
+                                        </ThemeProvider>
+                                    </ColorModeContext.Provider>
+                                </NotificationProvider>
+                            </SnackbarProvider>
+                        </SidebarProvider>
                 </AuthProvider>
             </LangProvider>
         </LocalizationProvider>

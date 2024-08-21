@@ -21,7 +21,7 @@ let now = new Date()
 now.setHours(d.getHours(), d.getMinutes(), 0, 0);
 
 export default function SendColis () {
-    const showSnackbar = useSnackbar();
+    const { showSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);

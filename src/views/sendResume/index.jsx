@@ -17,7 +17,7 @@ export default function SendResume () {
     const { lang, translate } = useLang();
     const [demand, setDemand] = useState({});
     const navigate = useNavigate();
-    const showSnackbar = useSnackbar();
+    const { showSnackbar } = useSnackbar();
 
     const [depositLocation, setDepositLocation] = useState("New York");
     const [demandSize, setDemandSize] = useState("Large");

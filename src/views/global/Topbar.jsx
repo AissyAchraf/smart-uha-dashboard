@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
@@ -17,13 +17,17 @@ import {Logout} from "@mui/icons-material";
 import useAuth from "../../hooks/useAuth";
 import ReactCountryFlag from "react-country-flag";
 import useLang from "../../hooks/useLang";
+import useNotification from "../../hooks/useNotification";
+import Badge from '@mui/material/Badge';
 
 const Topbar = () => {
     const {lang, changeLang, translate} = useLang();
+    const { notifications } = useNotification();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
     const { logout } = useAuth();
+    const [notificationsNumber, setNotificationsNumber] = useState(0);
 
     const [anchorElUserMenu, setAnchorElUserMenu] = useState(null);
     const isOpenUserMenu = Boolean(anchorElUserMenu);
@@ -47,6 +51,10 @@ const Topbar = () => {
         setAnchorElLangMenu(null);
     };
 
+    useEffect(() => {
+        setNotificationsNumber(notifications.length);
+    }, []);
+
     return (<Box display="flex" justifyContent="space-between" p={2}>
         {/* Search bar */}
         <Box display="flex" backgroundColor={colors.primary[400]} borderRadius="3px">
@@ -66,7 +74,9 @@ const Topbar = () => {
                 )}
             </IconButton>
             <IconButton>
-                <NotificationsOutlinedIcon />
+                <Badge badgeContent={notifications.length} color="warning">
+                    <NotificationsOutlinedIcon />
+                </Badge>
             </IconButton>
             <IconButton onClick={handleClickLangMenu}>
                 <LanguageIcon />

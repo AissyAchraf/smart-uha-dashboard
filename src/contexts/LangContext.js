@@ -25,7 +25,7 @@ export const LangProvider = ({ children }) => {
         localStorage.setItem("lang", lang);
     }
 
-    const translate = (key) => {
+    const translate = (key, params = {}) => {
         let bloc = translations[lang];
         for(const k of key.split('.')) {
             if(typeof bloc[k] === 'undefined') return "OOPS: could not translate";
