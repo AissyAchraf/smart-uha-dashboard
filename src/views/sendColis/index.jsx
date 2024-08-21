@@ -15,6 +15,7 @@ import API from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
 import useSnackbar from "../../hooks/useSnackbar";
 import MoreTimeOutlinedIcon from '@mui/icons-material/MoreTimeOutlined';
+import Autocomplete from '@mui/material/Autocomplete';
 
 let d = new Date();
 let now = new Date()
@@ -196,18 +197,32 @@ export default function SendColis () {
                                                 ))}
                                             </TextField>
 
-                                            <TextField
+                                            {/*<TextField*/}
+                                            {/*    fullWidth*/}
+                                            {/*    // variant="filled"*/}
+                                            {/*    type="text"*/}
+                                            {/*    label={translate("sendColis.receiver")}*/}
+                                            {/*    onBlur={handleBlur}*/}
+                                            {/*    onChange={handleChange}*/}
+                                            {/*    value={values.receiver}*/}
+                                            {/*    name="receiver"*/}
+                                            {/*    error={!!touched.receiver && !!errors.receiver}*/}
+                                            {/*    helperText={touched.receiver && errors.receiver}*/}
+                                            {/*    sx={{ gridColumn: "span 2" }}*/}
+                                            {/*/>*/}
+
+                                            <Autocomplete
                                                 fullWidth
-                                                // variant="filled"
-                                                type="text"
-                                                label={translate("sendColis.receiver")}
+                                                receiver
+                                                name="receiver"
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 value={values.receiver}
-                                                name="receiver"
+                                                options={users.map((user) => user._id)}
                                                 error={!!touched.receiver && !!errors.receiver}
                                                 helperText={touched.receiver && errors.receiver}
                                                 sx={{ gridColumn: "span 2" }}
+                                                renderInput={(params) => <TextField {...params} label={translate("sendColis.receiver")}/>}
                                             />
 
                                             <TextField
