@@ -9,7 +9,6 @@ export const SidebarProvider = ({ children }) => {
     const sidebarWidth = isCollapsed ? '80px' : '250px';
 
     const toggleSidebar = () => {
-        console.log('Toggling sidebar'); // Debugging line
         setIsCollapsed(!isCollapsed);
     };
 

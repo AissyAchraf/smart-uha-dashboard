@@ -18,13 +18,12 @@ import Sidebar from "./views/global/Sidebar";
 import Topbar from "./views/global/Topbar";
 
 const Layout = () => {
-    const { sidebarWidth } = useSidebar(); // Access sidebar width from context
+    const { sidebarWidth, isCollapsed } = useSidebar();
 
     return (
         <Box className="app">
             <Sidebar />
-            <Box className="content"
-                  flexGrow={1}>
+            <Box className="content" sx={{ marginLeft: (isCollapsed ? "20px" : "70px") }}>
                 <Topbar/>
                 <Outlet/>
             </Box>

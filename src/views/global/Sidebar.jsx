@@ -65,6 +65,7 @@ const Sidebar = () => {
                 width: "100%",
                 height: "100vh",
                 minHeight: "100%",
+                position: "fixed",
                 "& .pro-sidebar-inner": {
                     background: `${colors.primary[400]} !important`,
                     width: "100%",

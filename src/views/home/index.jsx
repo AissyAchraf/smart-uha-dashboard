@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import useLang from "../../hooks/useLang";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import API from "../../utils/api";
 import DoorMonitor from "../../components/DoorMonitor";
 import { DoorStates } from "../../utils/enums/DoorStates";
@@ -14,7 +14,7 @@ const Home = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const { lang, translate } = useLang();
-    const [demands, setDemands] = useState();
+    const [demands, setDemands] = useState([]);
 
     const getDemandStateClass = (state) => {
         let status = "demand-error";
@@ -70,6 +70,22 @@ const Home = () => {
         return {status, classes};
     }
 
+    const CustomGridRow = React.memo((props) => {
+        const { status, classes } = getDemandStateBadge(props.value);
+        return (
+            <Badge
+                sx={{
+                    "& .MuiBadge-badge": {
+                        color: "white",
+                        backgroundColor: classes,
+                        width: 100,
+                    },
+                }}
+                badgeContent={translate(status)}
+            />
+        );
+    });
+
     const columns = [
         { field: "_id", headerName: "ID" },
         {
@@ -78,19 +94,7 @@ const Home = () => {
             flex: 1,
             align: "center",
             headerAlign: "center",
-            renderCell: (params) => {
-                const {status, classes} = getDemandStateBadge(params.value);
-                return (
-                    <Badge sx={{
-                            "& .MuiBadge-badge": {
-                            color: "white",
-                            backgroundColor: classes,
-                            width: 100
-                        }}}
-                        badgeContent={translate(status)}
-                    ></Badge>
-                );
-            },
+            renderCell: (params) => <CustomGridRow {...params} />
         },
         {
             field: "box",
@@ -167,21 +171,22 @@ const Home = () => {
         }
     ];
 
-
+    const cachedColumns = useMemo(() => columns, [columns]);
 
     useEffect( () => {
         API.getDemands().then((data) => {setDemands(data.data);});
     }, []);
 
     return (
-        <Box mx="20px" mt="30px">
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-                <Header title={translate('header.home')} subtitle={translate('home.welcome')}></Header>
-            </Box>
+        <Box mx="20px" my="30px">
+            <Header title={translate('header.home')} subtitle={translate('home.welcome')} />
+
             <Box
                 m="30px 0 0 0"
                 height="75vh"
                 sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
                     "& .MuiDataGrid-root": {
                         border: "none",
                     },
@@ -207,7 +212,17 @@ const Home = () => {
                     },
                 }}
             >
-                <DataGrid checkboxSelection rows={demands} columns={columns} getRowId={(row) => row._id} />
+                <DataGrid
+                    loading={demands.length === 0}
+                    checkboxSelection
+                    rows={demands}
+                    columns={cachedColumns}
+                    getRowId={(row) => row._id}
+                    sx={{
+                        display: 'grid',
+                        gridTemplateRows: 'auto 1f auto',
+                    }}
+                />
             </Box>
         </Box>
     );
