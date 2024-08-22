@@ -64,7 +64,7 @@ const Topbar = () => {
         {/* Left Side */}
         <Box display="flex">
             {/* Tooggle Sidebar Button */}
-            <IconButton onClick={toggleSidebar}>
+            <IconButton onClick={toggleSidebar} sx={{ mr: 1 }}>
                 <MenuOutlinedIcon />
             </IconButton>
             {/* Search bar */}

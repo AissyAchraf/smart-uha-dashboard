@@ -21,7 +21,7 @@ const Layout = () => {
     const { sidebarWidth } = useSidebar(); // Access sidebar width from context
 
     return (
-        <Box className="app" width="100%" height="100%">
+        <Box className="app">
             <Sidebar />
             <Box className="content"
                   flexGrow={1}>
