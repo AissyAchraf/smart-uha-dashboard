@@ -13,6 +13,8 @@ import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 import { useLocation } from 'react-router-dom';
 import useSidebar from "../../hooks/useSidebar";
+import Drawer from '@mui/material/Drawer';
+import { useMediaQuery } from "@mui/material";
 
 const Item = ({ id, title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -26,6 +28,7 @@ const Item = ({ id, title, to, icon, selected, setSelected }) => {
             }}
             onClick={() => setSelected(id)}
             icon={icon}
+            width="100%"
         >
             <Typography>{title}</Typography>
             <Link to={to} />
@@ -39,8 +42,9 @@ const Sidebar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const location = useLocation();
-    const { isCollapsed, sidebarWidth, toggleSidebar } = useSidebar();
+    const { isCollapsed, toggleSidebar } = useSidebar();
     const [selected, setSelected] = useState("Home");
+    const isNonMobile = useMediaQuery("(min-width: 600px)");
 
     useEffect(() => {
         const path = location.pathname;
@@ -55,18 +59,22 @@ const Sidebar = () => {
         }
     }, [location]);
 
-    return (
+    const SidebarContent = (
         <Box
-            className="sidebar"
             sx={{
+                width: "100%",
+                height: "100vh",
+                minHeight: "100%",
                 "& .pro-sidebar-inner": {
                     background: `${colors.primary[400]} !important`,
+                    width: "100%",
                 },
                 "& .pro-icon-wrapper": {
                     backgroundColor: "transparent !important",
                 },
                 "& .pro-inner-item": {
                     padding: "5px 35px 5px 20px !important",
+                    width: "100%",
                 },
                 "& .pro-inner-item:hover": {
                     color: "#868dfb !important",
@@ -78,10 +86,15 @@ const Sidebar = () => {
         >
             <ProSidebar collapsed={isCollapsed}>
                 <Menu iconShape="square">
-                    {/* LOGO AND MENU ICON */}
                     <MenuItem
                         onClick={toggleSidebar}
-                        icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+                        icon={isCollapsed ? (<Box
+                                                component="img"
+                                                src="assets/illustrations/robot_icon.png"
+                                                sx={{
+                                                    borderRadius: "10px",
+                                                }}
+                                            />) : undefined}
                         style={{
                             margin: "10px 0 20px 0",
                             color: colors.grey[100],
@@ -94,42 +107,35 @@ const Sidebar = () => {
                                 alignItems="center"
                                 ml="15px"
                             >
-                                <Typography variant="h3" color={colors.grey[100]}>
-                                    SMART UHA
-                                </Typography>
-                                <IconButton onClick={toggleSidebar}>
-                                    <MenuOutlinedIcon />
-                                </IconButton>
-                            </Box>
-                        )}
-                    </MenuItem>
-
-                    {!isCollapsed && (
-                        <Box mb="25px">
-                            <Box display="flex" justifyContent="center" alignItems="center">
-                                <img
-                                    alt="profile-user"
-                                    width="50px"
-                                    height="50px"
-                                    src={`../../assets/avatar.png`}
-                                    style={{ cursor: "pointer", borderRadius: "50%" }}
-                                />
-                            </Box>
-                            <Box textAlign="center">
                                 <Typography
                                     variant="h3"
                                     color={colors.grey[100]}
-                                    fontWeight="bold"
-                                    sx={{ m: "10px 0 0 0" }}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}
                                 >
-                                    {user?.email}
+                                    <Box
+                                        component="img"
+                                        src="assets/illustrations/robot_icon.png"
+                                        sx={{
+                                            borderRadius: "10px",
+                                            width: "50px",
+                                            height: "50px",
+                                            marginRight: "10px"
+                                        }}
+                                    />
+                                    SMART UHA
                                 </Typography>
-                                <Typography variant="h5" color={colors.redAccent[500]}>
-                                    {user?.isAdmin ? 'Admin' : 'User'}
-                                </Typography>
+                                {!isNonMobile && (
+                                    <IconButton onClick={toggleSidebar}>
+                                        <MenuOutlinedIcon />
+                                    </IconButton>
+                                )}
+
                             </Box>
-                        </Box>
-                    )}
+                        )}
+                    </MenuItem>
 
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
@@ -162,6 +168,34 @@ const Sidebar = () => {
                 </Menu>
             </ProSidebar>
         </Box>
+    );
+
+    return (
+        <>
+            {isNonMobile ? (
+                <Box sx={{ width: isCollapsed ? '80px' : '250px', transition: 'width 0.3s' }}>
+                    {SidebarContent}
+                </Box>
+            ) : (
+                <Drawer
+                    open={!isCollapsed}
+                    onClose={toggleSidebar}
+                    anchor="left"
+                    sx={{
+                        width: "270px",
+                        boxSizing: "border-box",
+                        "& .MuiDrawer-paper": {
+                            color: theme.palette.secondary[200],
+                            backgroundColor: theme.palette.background.alt,
+                            boxSizing: "border-box",
+                            width: "270px",
+                        },
+                    }}
+                >
+                    {SidebarContent}
+                </Drawer>
+            )}
+        </>
     );
 };
 

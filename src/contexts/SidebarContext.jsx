@@ -1,14 +1,21 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useMediaQuery } from "@mui/material";
 
 const SidebarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const isNonMobile = useMediaQuery("(min-width: 600px)");
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const sidebarWidth = isCollapsed ? '80px' : '250px';
 
     const toggleSidebar = () => {
+        console.log('Toggling sidebar'); // Debugging line
         setIsCollapsed(!isCollapsed);
     };
+
+    useEffect(() => {
+        setIsCollapsed(!isNonMobile);
+    }, [isNonMobile]);
 
     return (
         <SidebarContext.Provider value={{ isCollapsed, sidebarWidth, toggleSidebar }}>

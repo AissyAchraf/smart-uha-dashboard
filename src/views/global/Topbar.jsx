@@ -7,6 +7,7 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,6 +20,8 @@ import ReactCountryFlag from "react-country-flag";
 import useLang from "../../hooks/useLang";
 import useNotification from "../../hooks/useNotification";
 import Badge from '@mui/material/Badge';
+import { useMediaQuery } from "@mui/material";
+import useSidebar from "../../hooks/useSidebar";
 
 const Topbar = () => {
     const {lang, changeLang, translate} = useLang();
@@ -28,6 +31,8 @@ const Topbar = () => {
     const colorMode = useContext(ColorModeContext);
     const { logout } = useAuth();
     const [notificationsNumber, setNotificationsNumber] = useState(0);
+    const isNonMobile = useMediaQuery("(min-width: 600px)");
+    const { isCollapsed, toggleSidebar } = useSidebar();
 
     const [anchorElUserMenu, setAnchorElUserMenu] = useState(null);
     const isOpenUserMenu = Boolean(anchorElUserMenu);
@@ -56,13 +61,21 @@ const Topbar = () => {
     }, []);
 
     return (<Box display="flex" justifyContent="space-between" p={2}>
-        {/* Search bar */}
-        <Box display="flex" backgroundColor={colors.primary[400]} borderRadius="3px">
-            <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Recherche"></InputBase>
-            <IconButton type="button" sx={{ p: 1}}>
-                <SearchIcon />
+        {/* Left Side */}
+        <Box display="flex">
+            {/* Tooggle Sidebar Button */}
+            <IconButton onClick={toggleSidebar}>
+                <MenuOutlinedIcon />
             </IconButton>
+            {/* Search bar */}
+            <Box display="flex" backgroundColor={colors.primary[400]} borderRadius="3px">
+                <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Recherche"></InputBase>
+                <IconButton type="button" sx={{ p: 1}}>
+                    <SearchIcon />
+                </IconButton>
+            </Box>
         </Box>
+
 
         {/* ICONS */}
         <Box display="flex">

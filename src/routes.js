@@ -2,6 +2,7 @@ import AuthGuard from "./auth/AuthGuard";
 import { Outlet } from "react-router-dom";
 import { authRoles } from "./auth/authRoles";
 import useSidebar from "./hooks/useSidebar";
+import { Box } from "@mui/material";
 
 // SESSION PAGES
 import SignIn from "./views/sessions/SignIn";
@@ -20,14 +21,14 @@ const Layout = () => {
     const { sidebarWidth } = useSidebar(); // Access sidebar width from context
 
     return (
-        <div className="app">
+        <Box className="app" width="100%" height="100%">
             <Sidebar />
-            <main className="content"
-                  style={{marginLeft: sidebarWidth, transition: 'margin-left 0.3s ease-in-out'}}>
+            <Box className="content"
+                  flexGrow={1}>
                 <Topbar/>
                 <Outlet/>
-            </main>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
