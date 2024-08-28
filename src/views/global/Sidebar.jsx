@@ -10,6 +10,7 @@ import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 import { useLocation } from 'react-router-dom';
@@ -59,6 +60,8 @@ const Sidebar = () => {
             setSelected("SendResume");
         } else if (path === "/vehicles") {
             setSelected("Vehicles");
+        } else if (path === "/rois") {
+            setSelected("Rois");
         }
     }, [location]);
 
@@ -174,6 +177,15 @@ const Sidebar = () => {
                             title={translate('admin.labels.vehicles')}
                             to="/vehicles"
                             icon={<LocalShippingOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Item
+                            id="Rois"
+                            title={translate('admin.labels.rois')}
+                            to="/vehicles"
+                            icon={<FmdGoodOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />

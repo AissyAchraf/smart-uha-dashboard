@@ -208,9 +208,11 @@ export default {
             }
         },
         roi: {
+            title: "Gestion des Points de Livraison",
+            subtitle: "Gérez Vos Points de Livraison sur la Carte",
             supervisorId: "Numéro",
             name: "Nom",
-            displayName: "Nom d'Affiche",
+            displayName: "Nom d'Affichage",
             isDeliveryPoint: "Point de Livraison",
             canDeliver: "Oui",
             cannotDeliver: "Non",

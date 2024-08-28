@@ -206,6 +206,8 @@ export default {
             }
         },
         roi: {
+            title: "Delivery Points Management",
+            subtitle: "Manage Your Delivery Points on the Map",
             supervisorId: "Number",
             name: "Name",
             displayName: "Display Name",

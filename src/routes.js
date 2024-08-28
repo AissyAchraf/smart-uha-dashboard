@@ -12,6 +12,7 @@ import SendColis from "./views/sendColis";
 import SendResume from "./views/sendResume";
 import Track from "./views/track";
 import Vehicles from "./views/admin/vehicles"
+import Rois from "./views/admin/rois";
 
 // Dashboard
 import Home from "./views/home";
@@ -50,6 +51,8 @@ const routes = [
             {path: "/track", element: <Track />},
             // Vehicles route
             {path: "/vehicles", element: <Vehicles />},
+            // Rois route
+            {path: "/rois", element: <Rois />},
         ]
     },
 
