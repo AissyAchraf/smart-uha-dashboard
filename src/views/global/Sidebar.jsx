@@ -9,6 +9,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 import { useLocation } from 'react-router-dom';
@@ -56,6 +57,8 @@ const Sidebar = () => {
             setSelected("Track");
         } else if (path === "/sendResume") {
             setSelected("SendResume");
+        } else if (path === "/vehicles") {
+            setSelected("Vehicles");
         }
     }, [location]);
 
@@ -162,6 +165,15 @@ const Sidebar = () => {
                             title={translate('track.ongoing')}
                             to="/track"
                             icon={<TrackChangesOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Item
+                            id="Vehicles"
+                            title={translate('admin.labels.vehicles')}
+                            to="/vehicles"
+                            icon={<LocalShippingOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />

@@ -109,6 +109,7 @@ export default {
         stateModal: {
             title: "State of the vehicle",
             body: "The vehicle is currently {robotState}. Select a new state ?",
+            body2: "The vehicle maintenance point is currently {maintenancePoint}. Select a new Point ?",
             error: "Error: Cannot get vehicle state",
         }
     },
@@ -159,7 +160,10 @@ export default {
             older: "Completed more than 3 days ago",
         },
         vehicle: {
+            title: "Vehicles",
+            subtitle: "Manage Your Autonomous Delivery Robots: Control, Monitor, and Optimize Fleet Operations",
             name: "Name",
+            supervisorURL: "Supervisor URL",
             battery: "Battery",
             batteryCharging: "Charging battery",
             batteryCharged: "Fully charged",
@@ -184,7 +188,22 @@ export default {
             activate: "Activate this door?",
             area: "Areas",
             toMaintenance: "Send to maintenance",
-            maintenancePoint: "Maintenance point"
+            maintenancePoint: "Maintenance point",
+            noActivities: "No activity for the vehicle",
+            supervisorModal: {
+                title: "Manage Supervisor",
+                dock: "Dock",
+                undock: "undock",
+                restart: "Restart Supervisor",
+            },
+            doorControllerModal: {
+                title: "Manage Door",
+            },
+            planningMonitorModal: {
+                title: "Monitor the vehicle planning",
+                activityType: "Type",
+                demands: "Demands",
+            }
         },
         roi: {
             supervisorId: "Number",
@@ -222,5 +241,10 @@ export default {
         packagePlacement: "Shipping",
         onTheWay: "On The Way",
         deliveryConfirmation: "Delivery Confirmation",
+    },
+    modal: {
+        button: {
+            close: "Close"
+        }
     }
 }

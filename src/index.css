@@ -155,7 +155,7 @@ circle {
 }
 
 .closed {
-  background-color: darkgray;
+  background-color: gray;
 }
 
 .unlocked {
@@ -230,4 +230,25 @@ circle {
 }
 .state-pending{
   background-color: #c8cacc;
+}
+
+/* Battery Monitor */
+.progress-bar {
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+}
+
+.bttr-mntr-vertical {
+  display: inline-block;
+  margin-top: 25%;
+  width: 100px;
+  height: 80px;
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+.bttr-mntr-vertical {
+  box-shadow: inset 0px 4px 6px #ccc;
+}
+.progress-bar {
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+  height: 100%
 }

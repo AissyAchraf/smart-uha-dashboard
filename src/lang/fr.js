@@ -109,6 +109,7 @@ export default {
         stateModal: {
             title: "État du véhicule",
             body: "Le véhicule est {robotState}. Sélectionner un nouvel état ?",
+            body2: "Le point de maintenance du véhicule est {maintenancePoint}. Sélectionner un nouveau Point ?",
             error: "Erreur: Impossible d'accéder au véhicule",
         }
     },
@@ -159,7 +160,10 @@ export default {
             older: "Completé(s) il y a plus de 3 jours",
         },
         vehicle: {
+            title: "Véhicules",
+            subtitle: "Gérez vos robots de livraison autonomes : contrôlez, surveillez et optimisez les opérations de la flotte",
             name: "Nom",
+            supervisorURL: "URL Superviseur",
             battery: "Batterie",
             batteryCharging: "Chargement de la batterie",
             batteryCharged: "Chargement complété",
@@ -186,7 +190,22 @@ export default {
             activate: "Activer cette porte?",
             area: "Zones",
             toMaintenance: "Envoyer en maintenance",
-            maintenancePoint: "Point de maintenance"
+            maintenancePoint: "Point de maintenance",
+            noActivities: "Aucune activité pour le véhicule",
+            supervisorModal: {
+                title: "Gérer Superviseur",
+                dock: "Dock",
+                undock: "undock",
+                restart: "Redémarer Superviseur",
+            },
+            doorControllerModal: {
+                title: "Gérer la port",
+            },
+            planningMonitorModal: {
+                title: "Surveiller le planning du véhicule",
+                activityType: "Type",
+                demands: "Demandes",
+            }
         },
         roi: {
             supervisorId: "Numéro",
@@ -224,5 +243,10 @@ export default {
         packagePlacement: "Expédition",
         onTheWay: "En route",
         deliveryConfirmation: "Confirmation de livraison"
+    },
+    modal: {
+        button: {
+            close: "Fermer"
+        }
     }
 }
