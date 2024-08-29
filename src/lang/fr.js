@@ -219,6 +219,8 @@ export default {
             warning: "êtes vous sur de déclancher cette commande?"
         },
         supervisor: {
+            title: "Tableau de Bord de Suivi des Superviseurs",
+            subtitle: "Suivez et Gérez les Activités des Superviseurs en Temps Réel",
             idleCpuDesc: "Pourcentage total non utilisé par l'application des CPU(s)",
             totalCpuUsedDesc: "Pourcentage total utilisé des CPU(s) par l'application (User + Sys)",
             userCpuDesc: "Pourcentage utilisé des CPU(s) par l'application dans l'espace user (quand le processeur travaille sur des fonctionnalités de l'application)",

@@ -11,6 +11,7 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+import MonitorHeartOutlinedIcon from '@mui/icons-material/MonitorHeartOutlined';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
 import { useLocation } from 'react-router-dom';
@@ -62,6 +63,8 @@ const Sidebar = () => {
             setSelected("Vehicles");
         } else if (path === "/rois") {
             setSelected("Rois");
+        } else if (path === "/supervisor") {
+            setSelected("Supervisor");
         }
     }, [location]);
 
@@ -184,8 +187,17 @@ const Sidebar = () => {
                         <Item
                             id="Rois"
                             title={translate('admin.labels.rois')}
-                            to="/vehicles"
+                            to="/rois"
                             icon={<FmdGoodOutlinedIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+
+                        <Item
+                            id="Supervisor"
+                            title={translate('admin.labels.supervisor')}
+                            to="/supervisor"
+                            icon={<MonitorHeartOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />

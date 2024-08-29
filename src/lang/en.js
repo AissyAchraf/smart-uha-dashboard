@@ -217,6 +217,8 @@ export default {
             warning: "are you sure you want to launch this command?",
         },
         supervisor: {
+            title: "Supervisor Monitoring Dashboard",
+            subtitle: "Track and Manage Supervisor Activities in Real-Time",
             idleCpuDesc: "Unused percentage of the CPU(s) by the application",
             totalCpuUsedDesc: "Total used percentage of the CPU(s) by the application (User + Sys)",
             userCpuDesc: "Used percentage of the CPU(s) by the application in the user space (when the processor is processing something directly for the application)",

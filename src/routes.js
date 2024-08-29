@@ -13,6 +13,7 @@ import SendResume from "./views/sendResume";
 import Track from "./views/track";
 import Vehicles from "./views/admin/vehicles"
 import Rois from "./views/admin/rois";
+import Supervisor from "./views/admin/supervisor";
 
 // Dashboard
 import Home from "./views/home";
@@ -53,6 +54,8 @@ const routes = [
             {path: "/vehicles", element: <Vehicles />},
             // Rois route
             {path: "/rois", element: <Rois />},
+            // Supervisor route
+            {path: "/supervisor", element: <Supervisor />},
         ]
     },
 
