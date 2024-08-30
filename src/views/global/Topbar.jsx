@@ -64,11 +64,11 @@ const Topbar = () => {
         {/* Left Side */}
         <Box display="flex">
             {/* Tooggle Sidebar Button */}
-            <IconButton onClick={toggleSidebar} sx={{ mr: 1 }}>
+            <IconButton onClick={toggleSidebar} sx={{ mr: 1, color: colors.primary[400] }}>
                 <MenuOutlinedIcon />
             </IconButton>
             {/* Search bar */}
-            <Box display="flex" backgroundColor={colors.primary[400]} borderRadius="3px">
+            <Box display="flex" backgroundColor={colors.primary[100]} borderRadius="3px">
                 <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Recherche"></InputBase>
                 <IconButton type="button" sx={{ p: 1}}>
                     <SearchIcon />

@@ -1,25 +1,21 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, IconButton, Typography, useTheme, useMediaQuery, Drawer } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import HomeIcon from "@mui/icons-material/Home";
+import MenuIcon from "@mui/icons-material/Menu";
 import IosShareIcon from '@mui/icons-material/IosShare';
-import TrackChangesOutlinedIcon from '@mui/icons-material/TrackChangesOutlined';
-import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import MonitorHeartOutlinedIcon from '@mui/icons-material/MonitorHeartOutlined';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import useAuth from "../../hooks/useAuth";
 import useLang from "../../hooks/useLang";
-import { useLocation } from 'react-router-dom';
 import useSidebar from "../../hooks/useSidebar";
-import Drawer from '@mui/material/Drawer';
-import { useMediaQuery } from "@mui/material";
 
-const Item = ({ id, title, to, icon, selected, setSelected }) => {
+const Item = ({ id, title, to, icon, selected, setSelected, isCollapsed }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -27,13 +23,33 @@ const Item = ({ id, title, to, icon, selected, setSelected }) => {
         <MenuItem
             active={selected === id}
             style={{
-                color: colors.grey[100],
+                color: colors.common.white,
+                margin: '15px 0',
+                padding: isCollapsed ? '3px' : '0',
+                borderRadius: isCollapsed ? '50%' : '8px',
+                backgroundColor: (!isCollapsed && selected === id) ? colors.primary[400] : 'transparent',
             }}
             onClick={() => setSelected(id)}
-            icon={icon}
+            icon={
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: isCollapsed ? '45px' : 'auto',
+                        height: isCollapsed ? '45px' : 'auto',
+                        backgroundColor: isCollapsed && selected === id ? colors.primary[400] : 'transparent',
+                        borderRadius: isCollapsed ? '50%' : '0',
+                        padding: isCollapsed ? '10px' : '0',
+                        transition: 'all 0.3s ease',
+                    }}
+                >
+                    {icon}
+                </Box>
+            }
             width="100%"
         >
-            <Typography>{title}</Typography>
+            {!isCollapsed && <Typography sx={{ fontWeight: selected === id ? 'bold' : 'normal' }}>{title}</Typography>}
             <Link to={to} />
         </MenuItem>
     );
@@ -51,21 +67,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         const path = location.pathname;
-        if (path === "/") {
-            setSelected("Home");
-        } else if (path === "/sendColis") {
-            setSelected("SendColis");
-        } else if (path === "/track") {
-            setSelected("Track");
-        } else if (path === "/sendResume") {
-            setSelected("SendResume");
-        } else if (path === "/vehicles") {
-            setSelected("Vehicles");
-        } else if (path === "/rois") {
-            setSelected("Rois");
-        } else if (path === "/supervisor") {
-            setSelected("Supervisor");
-        }
+        setSelected(path === "/" ? "Home" : path.substring(1).charAt(0).toUpperCase() + path.slice(2));
     }, [location]);
 
     const SidebarContent = (
@@ -76,7 +78,7 @@ const Sidebar = () => {
                 minHeight: "100%",
                 position: "fixed",
                 "& .pro-sidebar-inner": {
-                    background: `${colors.primary[400]} !important`,
+                    background: `${colors.blueAccent[900]} !important`,
                     width: "100%",
                 },
                 "& .pro-icon-wrapper": {
@@ -87,10 +89,10 @@ const Sidebar = () => {
                     width: "100%",
                 },
                 "& .pro-inner-item:hover": {
-                    color: "#868dfb !important",
+                    color: colors.primary[500],
                 },
                 "& .pro-menu-item.active": {
-                    color: "#6870fa !important",
+                    color: "white !important",
                 },
             }}
         >
@@ -98,13 +100,13 @@ const Sidebar = () => {
                 <Menu iconShape="square">
                     <MenuItem
                         onClick={toggleSidebar}
-                        icon={isCollapsed ? (<Box
-                                                component="img"
-                                                src="assets/illustrations/robot_icon.png"
-                                                sx={{
-                                                    borderRadius: "10px",
-                                                }}
-                                            />) : undefined}
+                        icon={isCollapsed ? (
+                            <Box
+                                component="img"
+                                src="assets/illustrations/robot_icon.png"
+                                sx={{ borderRadius: "10px" }}
+                            />
+                        ) : undefined}
                         style={{
                             margin: "10px 0 20px 0",
                             color: colors.grey[100],
@@ -119,11 +121,8 @@ const Sidebar = () => {
                             >
                                 <Typography
                                     variant="h3"
-                                    color={colors.grey[100]}
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center'
-                                    }}
+                                    color={colors.common.white}
+                                    sx={{ display: 'flex', alignItems: 'center' }}
                                 >
                                     <Box
                                         component="img"
@@ -139,22 +138,25 @@ const Sidebar = () => {
                                 </Typography>
                                 {!isNonMobile && (
                                     <IconButton onClick={toggleSidebar}>
-                                        <MenuOutlinedIcon />
+                                        <MenuIcon />
                                     </IconButton>
                                 )}
-
                             </Box>
                         )}
                     </MenuItem>
 
-                    <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+                    <Box
+                        marginTop={isCollapsed ? undefined : 5}
+                        marginX={isCollapsed ? undefined : "5%"}
+                    >
                         <Item
                             id="Home"
                             title={translate('header.home')}
                             to="/"
-                            icon={<HomeOutlinedIcon />}
+                            icon={<HomeIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
 
                         <Item
@@ -164,42 +166,47 @@ const Sidebar = () => {
                             icon={<IosShareIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
 
                         <Item
                             id="Track"
                             title={translate('track.ongoing')}
                             to="/track"
-                            icon={<TrackChangesOutlinedIcon />}
+                            icon={<TrackChangesIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
 
                         <Item
                             id="Vehicles"
                             title={translate('admin.labels.vehicles')}
                             to="/vehicles"
-                            icon={<LocalShippingOutlinedIcon />}
+                            icon={<LocalShippingIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
 
                         <Item
                             id="Rois"
                             title={translate('admin.labels.rois')}
                             to="/rois"
-                            icon={<FmdGoodOutlinedIcon />}
+                            icon={<FmdGoodIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
 
                         <Item
                             id="Supervisor"
                             title={translate('admin.labels.supervisor')}
                             to="/supervisor"
-                            icon={<MonitorHeartOutlinedIcon />}
+                            icon={<MonitorHeartIcon />}
                             selected={selected}
                             setSelected={setSelected}
+                            isCollapsed={isCollapsed}
                         />
                     </Box>
                 </Menu>

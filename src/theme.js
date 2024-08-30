@@ -6,6 +6,69 @@ export const tokens = (mode) => ({
     ...(mode === "dark"
         ? {
             grey: {
+                100: "#2c2c2c",
+                200: "#242424",
+                300: "#1e1e1e",
+                400: "#171717",
+                500: "#121212",
+                600: "#0d0d0d",
+                700: "#090909",
+                800: "#050505",
+                900: "#020202",
+            },
+            primary: {
+                100: "#0E1B30",  // A very dark shade of Oxford Blue for backgrounds
+                200: "#0B1525",
+                300: "#08101A",
+                // 400: "27374D",
+                400: "#27A6F0",
+                500: "#05133A",  // Oxford Blue as the main tone
+                600: "#04112F",  // Slightly darker Oxford Blue
+                700: "#030E25",  // Darker variant for depth
+                800: "#020A1B",  // Deep Oxford Blue for background usage
+                900: "#010611",  // Nearly black, very dark blue
+            },
+            greenAccent: {
+                100: "#1c5c43",
+                200: "#174d37",
+                300: "#113e2c",
+                400: "#0c3021",
+                500: "#073217",
+                600: "#05260d",
+                700: "#041d0b",
+                800: "#031409",
+                900: "#010a05",
+            },
+            redAccent: {
+                100: "#4a0e0e",
+                200: "#3c0b0b",
+                300: "#2e0808",
+                400: "#200606",
+                500: "#120404",
+                600: "#0d0303",
+                700: "#090202",
+                800: "#050101",
+                900: "#020000",
+            },
+            blueAccent: {
+                100: "#0d3e5d",
+                200: "#0b3451",
+                300: "#0a2a44",
+                400: "#082137",
+                500: "#051f34",  // Close to Oxford Blue but slightly varied for depth
+                600: "#04182b",
+                700: "#031223",
+                800: "#020d1a",
+                900: "#04182b",
+            },
+            common: {
+                white: "#FFFFFF",  // White for contrasts
+                offWhite: "#E0E0E0" // A light grey for slightly off-white elements
+            }
+        }
+        : {
+            // Light mode as defined in your original setup
+            grey: {
                 100: "#e0e0e0",
                 200: "#c2c2c2",
                 300: "#a3a3a3",
@@ -17,18 +80,18 @@ export const tokens = (mode) => ({
                 900: "#141414",
             },
             primary: {
-                100: "#d0d1d5",
-                200: "#a1a4ab",
-                300: "#727681",
-                400: "#1F2A40",
-                500: "#141b2d",
-                600: "#101624",
-                700: "#0c101b",
-                800: "#080b12",
-                900: "#040509",
+                100: "#E3EEFC",  // Alice Blue
+                200: "#A9D5F6",  // Lightened mix of Picton Blue for contrast
+                300: "#73C3F3",  // A slightly deeper Picton Blue shade
+                400: "#27A6F0",  // Picton Blue
+                500: "#05133A",  // Oxford Blue (used as the main dark tone)
+                600: "#04112F",  // Slightly darker Oxford Blue
+                700: "#030E25",  // Darker variant for depth
+                800: "#020A1B",  // Deep Oxford Blue for background usage
+                900: "#010611",  // Nearly black, very dark blue
             },
             greenAccent: {
-                100: "#dbf5ee",
+                100: "#dbf5ee",  // Keeping existing greenAccent colors
                 200: "#b7ebde",
                 300: "#94e2cd",
                 400: "#70d8bd",
@@ -39,7 +102,7 @@ export const tokens = (mode) => ({
                 900: "#0f2922",
             },
             redAccent: {
-                100: "#f8dcdb",
+                100: "#f8dcdb",  // Keeping existing redAccent colors
                 200: "#f1b9b7",
                 300: "#e99592",
                 400: "#e2726e",
@@ -50,73 +113,20 @@ export const tokens = (mode) => ({
                 900: "#2c100f",
             },
             blueAccent: {
-                100: "#e1e2fe",
-                200: "#c3c6fd",
-                300: "#a4a9fc",
-                400: "#868dfb",
-                500: "#6870fa",
-                600: "#535ac8",
-                700: "#3e4396",
-                800: "#2a2d64",
-                900: "#151632",
+                100: "#E3EEFC",  // Alice Blue for lighter blue shades
+                200: "#C5E2F9",  // Light blend with Picton Blue
+                300: "#A6D7F5",  // Mid-range between Alice Blue and Picton Blue
+                400: "#87CBF2",  // Blending towards Picton Blue
+                500: "#27A6F0",  // Picton Blue as the primary accent
+                600: "#2092D3",  // Darker variant of Picton Blue
+                700: "#1A7EB7",  // Further darkened
+                800: "#146A9B",  // Continuing deeper
+                900: "#0F567E",  // Deepest blue accent
             },
-        }
-        : {
-            grey: {
-                100: "#141414",
-                200: "#292929",
-                300: "#3d3d3d",
-                400: "#525252",
-                500: "#666666",
-                600: "#858585",
-                700: "#a3a3a3",
-                800: "#c2c2c2",
-                900: "#e0e0e0",
-            },
-            primary: {
-                100: "#040509",
-                200: "#080b12",
-                300: "#0c101b",
-                400: "#f2f0f0", // manually changed
-                500: "#141b2d",
-                600: "#1F2A40",
-                700: "#727681",
-                800: "#a1a4ab",
-                900: "#d0d1d5",
-            },
-            greenAccent: {
-                100: "#0f2922",
-                200: "#1e5245",
-                300: "#2e7c67",
-                400: "#3da58a",
-                500: "#4cceac",
-                600: "#70d8bd",
-                700: "#94e2cd",
-                800: "#b7ebde",
-                900: "#dbf5ee",
-            },
-            redAccent: {
-                100: "#2c100f",
-                200: "#58201e",
-                300: "#832f2c",
-                400: "#af3f3b",
-                500: "#db4f4a",
-                600: "#e2726e",
-                700: "#e99592",
-                800: "#f1b9b7",
-                900: "#f8dcdb",
-            },
-            blueAccent: {
-                100: "#151632",
-                200: "#2a2d64",
-                300: "#3e4396",
-                400: "#535ac8",
-                500: "#6870fa",
-                600: "#868dfb",
-                700: "#a4a9fc",
-                800: "#c3c6fd",
-                900: "#e1e2fe",
-            },
+            common: {
+                white: "#FFFFFF",  // White
+                offWhite: "#FEFEFE" // Close to white
+            }
         }),
 });
 
@@ -130,7 +140,7 @@ export const themeSettings = (mode) => {
                 ? {
                     // palette values for dark mode
                     primary: {
-                        main: colors.primary[500],
+                        main: colors.primary[400],
                     },
                     secondary: {
                         main: colors.greenAccent[500],
@@ -141,7 +151,7 @@ export const themeSettings = (mode) => {
                         light: colors.grey[100],
                     },
                     background: {
-                        default: colors.primary[500],
+                        default: colors.grey[200],
                     },
                 }
                 : {

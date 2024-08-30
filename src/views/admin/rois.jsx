@@ -122,7 +122,7 @@ const Rois = () => {
                         display="flex"
                         justifyContent="center"
                         alignItems="center"
-                        backgroundColor={colors.primary[400]}
+                        backgroundColor={colors.common.white}
                         borderColor="black"
                         border={1}
                         borderRadius="30px"
@@ -192,14 +192,14 @@ const Rois = () => {
                         borderBottom: "none",
                     },
                     "& .MuiDataGrid-virtualScroller": {
-                        backgroundColor: colors.primary[400],
+                        backgroundColor: colors.primary[100],
                     },
                     "& .MuiDataGrid-footerContainer": {
                         borderTop: "none",
-                        backgroundColor: colors.redAccent[700],
+                        backgroundColor: colors.primary[400],
                     },
                     "& .MuiCheckbox-root": {
-                        color: `${colors.greenAccent[200]} !important`,
+                        color: `${colors.blueAccent[900]} !important`,
                     },
                 }}
             >

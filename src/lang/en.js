@@ -229,6 +229,8 @@ export default {
             externalDesc: "Memory used for C++ Objects bound to JavaScript Objects (include arrayBuffers)",
             arrayBuffersDesc: "Memory allocated for ArrayBuffer and SharedArrayBuffer",
             garbageCollector: "Server's garbage collector",
+            garbageCollectorLaunchButton: "Launch Manually",
+            updateDatabaseButton: "Update the database",
             UpdatingMapWarn: "Warning : All vehicles must be set to the Unavailable state to update map on the database.",
             UpdatingMapVehicleError: "Error: Unable to update the map on the database. One or multiple vehicles are not set to the Unavailable state.",
             UpdatingMapError: "Error: Map updating failed. Check your internet connection or contact an administrator."
@@ -248,7 +250,8 @@ export default {
     },
     modal: {
         button: {
-            close: "Close"
+            close: "Close",
+            submit: "Sumbmit"
         }
     }
 }

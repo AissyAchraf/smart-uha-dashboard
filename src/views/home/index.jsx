@@ -201,14 +201,14 @@ const Home = () => {
                         borderBottom: "none",
                     },
                     "& .MuiDataGrid-virtualScroller": {
-                        backgroundColor: colors.primary[400],
+                        backgroundColor: colors.primary[100],
                     },
                     "& .MuiDataGrid-footerContainer": {
                         borderTop: "none",
-                        backgroundColor: colors.redAccent[700],
+                        backgroundColor: colors.primary[400],
                     },
                     "& .MuiCheckbox-root": {
-                        color: `${colors.greenAccent[200]} !important`,
+                        color: `${colors.blueAccent[900]} !important`,
                     },
                 }}
             >

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Card, CardContent, Modal, Typography, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import useLang from "../../hooks/useLang";
-import { useState } from "react";
+import { tokens } from "../../theme";
 
 const ActivityTypes = {
     GoTo: "0",
@@ -12,6 +12,7 @@ const PlanningMonitor = ({ activities = [], vehicle, vehicleName }) => {
     const { translate } = useLang();
     const [open, setOpen] = useState(false);
     const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -39,7 +40,12 @@ const PlanningMonitor = ({ activities = [], vehicle, vehicleName }) => {
 
     return (
         <>
-            <Button onClick={handleOpen} >{vehicleName}</Button>
+            <Button
+                sx={{
+                    color: "#000"
+                }}
+                onClick={handleOpen}
+            >{vehicleName}</Button>
             <Modal open={open} onClose={handleClose}>
                 <Card
                     sx={{

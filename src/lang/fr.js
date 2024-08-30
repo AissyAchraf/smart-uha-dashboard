@@ -231,6 +231,8 @@ export default {
             externalDesc: "Mémoire utilisée pour les objets C++ qui sont liés aux objets JavaScript (cela inclut les arrayBuffers)",
             arrayBuffersDesc: "Mémoire allouée aux ArrayBuffer et SharedArrayBuffer",
             garbageCollector: "Collecteur de déchets du serveur",
+            garbageCollectorLaunchButton: "Lancer manuellement",
+            updateDatabaseButton: "Mettre à jour la base de données",
             UpdatingMapWarn: "Attention : Tous les véhicules doivent être en état Indisponible pour mettre à jour la carte sur la base de données.",
             UpdatingMapVehicleError: "Erreur: Impossible de mettre à jour la carte sur la base de données. Un ou plusieurs véhicules ne sont pas en état Indisponible.",
             UpdatingMapError: "Erreur: La mise à jour de la carte a échouée. Vérifier votre connection internet ou contacter un administrateur."
@@ -250,7 +252,8 @@ export default {
     },
     modal: {
         button: {
-            close: "Fermer"
+            close: "Fermer",
+            submit: "Envoyer"
         }
     }
 }
